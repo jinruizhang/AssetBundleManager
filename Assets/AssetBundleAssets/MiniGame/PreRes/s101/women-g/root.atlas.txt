@@ -1,0 +1,377 @@
+
+root.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+人素材/TextMiniGameHelp
+  rotate: true
+  xy: 401, 413
+  size: 160, 84
+  orig: 160, 84
+  offset: 0, 0
+  index: -1
+人素材/zzzz
+  rotate: true
+  xy: 166, 314
+  size: 204, 130
+  orig: 204, 130
+  offset: 0, 0
+  index: -1
+人素材/发抖
+  rotate: false
+  xy: 2, 754
+  size: 304, 268
+  orig: 304, 268
+  offset: 0, 0
+  index: -1
+人素材/右手
+  rotate: false
+  xy: 744, 843
+  size: 174, 179
+  orig: 174, 179
+  offset: 0, 0
+  index: -1
+人素材/右手-新
+  rotate: false
+  xy: 744, 680
+  size: 182, 161
+  orig: 182, 161
+  offset: 0, 0
+  index: -1
+人素材/右脚
+  rotate: false
+  xy: 920, 887
+  size: 102, 135
+  orig: 102, 135
+  offset: 0, 0
+  index: -1
+人素材/右脚-新
+  rotate: false
+  xy: 928, 750
+  size: 94, 135
+  orig: 94, 135
+  offset: 0, 0
+  index: -1
+人素材/嘴2
+  rotate: true
+  xy: 271, 542
+  size: 31, 25
+  orig: 31, 25
+  offset: 0, 0
+  index: -1
+人素材/嘴3
+  rotate: false
+  xy: 456, 597
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+人素材/大人闭眼
+  rotate: false
+  xy: 497, 165
+  size: 73, 50
+  orig: 73, 50
+  offset: 0, 0
+  index: -1
+人素材/头发上片4
+  rotate: false
+  xy: 2, 22
+  size: 136, 57
+  orig: 136, 57
+  offset: 0, 0
+  index: -1
+人素材/头发上片4-新
+  rotate: true
+  xy: 401, 288
+  size: 123, 89
+  orig: 123, 89
+  offset: 0, 0
+  index: -1
+人素材/头发后片
+  rotate: false
+  xy: 497, 217
+  size: 78, 103
+  orig: 78, 103
+  offset: 0, 0
+  index: -1
+人素材/头发后片-新
+  rotate: false
+  xy: 381, 165
+  size: 62, 121
+  orig: 62, 121
+  offset: 0, 0
+  index: -1
+人素材/头发后片1
+  rotate: true
+  xy: 487, 415
+  size: 52, 116
+  orig: 52, 116
+  offset: 0, 0
+  index: -1
+人素材/头发后片1-新
+  rotate: false
+  xy: 445, 165
+  size: 50, 121
+  orig: 50, 121
+  offset: 0, 0
+  index: -1
+人素材/头发后片3
+  rotate: true
+  xy: 437, 613
+  size: 175, 142
+  orig: 175, 142
+  offset: 0, 0
+  index: -1
+人素材/头发后片3-新
+  rotate: true
+  xy: 271, 575
+  size: 177, 164
+  orig: 177, 164
+  offset: 0, 0
+  index: -1
+人素材/女人开心嘴-新
+  rotate: true
+  xy: 437, 575
+  size: 36, 17
+  orig: 36, 17
+  offset: 0, 0
+  index: -1
+人素材/女人笑
+  rotate: false
+  xy: 581, 622
+  size: 33, 26
+  orig: 33, 26
+  offset: 0, 0
+  index: -1
+人素材/女人笑-新
+  rotate: true
+  xy: 708, 754
+  size: 42, 28
+  orig: 42, 28
+  offset: 0, 0
+  index: -1
+人素材/女人闭嘴
+  rotate: false
+  xy: 357, 772
+  size: 31, 16
+  orig: 31, 16
+  offset: 0, 0
+  index: -1
+人素材/婴儿
+  rotate: false
+  xy: 2, 81
+  size: 164, 187
+  orig: 164, 187
+  offset: 0, 0
+  index: -1
+人素材/婴儿-新
+  rotate: false
+  xy: 168, 109
+  size: 126, 203
+  orig: 126, 203
+  offset: 0, 0
+  index: -1
+人素材/婴儿眉毛右
+  rotate: true
+  xy: 376, 754
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1
+人素材/婴儿眉毛左
+  rotate: false
+  xy: 18, 2
+  size: 12, 18
+  orig: 12, 18
+  offset: 0, 0
+  index: -1
+人素材/婴儿睫毛
+  rotate: false
+  xy: 238, 62
+  size: 60, 45
+  orig: 60, 45
+  offset: 0, 0
+  index: -1
+人素材/婴儿笑
+  rotate: false
+  xy: 271, 525
+  size: 25, 15
+  orig: 25, 15
+  offset: 0, 0
+  index: -1
+人素材/婴儿闭眼
+  rotate: false
+  xy: 300, 56
+  size: 60, 54
+  orig: 60, 54
+  offset: 0, 0
+  index: -1
+人素材/婴儿闭眼-新
+  rotate: false
+  xy: 168, 27
+  size: 63, 36
+  orig: 63, 36
+  offset: 0, 0
+  index: -1
+人素材/孩子眼珠
+  rotate: false
+  xy: 357, 754
+  size: 17, 16
+  orig: 17, 16
+  offset: 0, 0
+  index: -1
+人素材/孩子眼白
+  rotate: false
+  xy: 233, 12
+  size: 60, 48
+  orig: 60, 48
+  offset: 0, 0
+  index: -1
+人素材/孩子脸
+  rotate: false
+  xy: 492, 322
+  size: 92, 91
+  orig: 92, 91
+  offset: 0, 0
+  index: -1
+人素材/孩子脸-新
+  rotate: true
+  xy: 928, 660
+  size: 88, 90
+  orig: 88, 90
+  offset: 0, 0
+  index: -1
+人素材/小孩嘴
+  rotate: false
+  xy: 708, 733
+  size: 22, 19
+  orig: 22, 19
+  offset: 0, 0
+  index: -1
+人素材/左手
+  rotate: false
+  xy: 140, 34
+  size: 26, 45
+  orig: 26, 45
+  offset: 0, 0
+  index: -1
+人素材/左手-新
+  rotate: true
+  xy: 308, 759
+  size: 29, 47
+  orig: 29, 47
+  offset: 0, 0
+  index: -1
+人素材/左胳膊-新
+  rotate: true
+  xy: 298, 409
+  size: 164, 101
+  orig: 164, 101
+  offset: 0, 0
+  index: -1
+人素材/左脚
+  rotate: false
+  xy: 298, 288
+  size: 101, 119
+  orig: 101, 119
+  offset: 0, 0
+  index: -1
+人素材/左脚-新
+  rotate: false
+  xy: 296, 153
+  size: 83, 133
+  orig: 83, 133
+  offset: 0, 0
+  index: -1
+人素材/眉毛右
+  rotate: true
+  xy: 586, 374
+  size: 39, 11
+  orig: 39, 11
+  offset: 0, 0
+  index: -1
+人素材/眉毛左
+  rotate: false
+  xy: 2, 2
+  size: 14, 18
+  orig: 14, 18
+  offset: 0, 0
+  index: -1
+人素材/眼泪
+  rotate: false
+  xy: 295, 9
+  size: 50, 45
+  orig: 50, 45
+  offset: 0, 0
+  index: -1
+人素材/眼泪1
+  rotate: true
+  xy: 381, 154
+  size: 9, 13
+  orig: 9, 13
+  offset: 0, 0
+  index: -1
+人素材/眼珠
+  rotate: false
+  xy: 616, 633
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+人素材/眼白
+  rotate: false
+  xy: 168, 65
+  size: 68, 42
+  orig: 68, 42
+  offset: 0, 0
+  index: -1
+人素材/脸
+  rotate: false
+  xy: 487, 469
+  size: 114, 142
+  orig: 114, 142
+  offset: 0, 0
+  index: -1
+人素材/脸-新
+  rotate: false
+  xy: 581, 650
+  size: 125, 146
+  orig: 125, 146
+  offset: 0, 0
+  index: -1
+人素材/裙子
+  rotate: false
+  xy: 2, 520
+  size: 267, 232
+  orig: 267, 232
+  offset: 0, 0
+  index: -1
+人素材/裙子-新
+  rotate: false
+  xy: 308, 790
+  size: 254, 232
+  orig: 254, 232
+  offset: 0, 0
+  index: -1
+人素材/身体
+  rotate: false
+  xy: 564, 798
+  size: 178, 224
+  orig: 178, 224
+  offset: 0, 0
+  index: -1
+人素材/身体-新
+  rotate: false
+  xy: 2, 270
+  size: 162, 248
+  orig: 162, 248
+  offset: 0, 0
+  index: -1
+人素材/闭眼-新
+  rotate: false
+  xy: 296, 112
+  size: 74, 39
+  orig: 74, 39
+  offset: 0, 0
+  index: -1

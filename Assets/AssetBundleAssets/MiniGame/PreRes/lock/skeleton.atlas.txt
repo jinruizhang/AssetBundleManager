@@ -1,0 +1,34 @@
+
+skeleton.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+eff_quan
+  rotate: false
+  xy: 2, 2
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
+img_minigame_lock_body
+  rotate: false
+  xy: 2, 74
+  size: 170, 165
+  orig: 170, 165
+  offset: 0, 0
+  index: -1
+img_minigame_lock_top
+  rotate: false
+  xy: 195, 342
+  size: 132, 110
+  orig: 132, 110
+  offset: 0, 0
+  index: -1
+img_minigame_play_hand
+  rotate: false
+  xy: 2, 241
+  size: 191, 211
+  orig: 191, 211
+  offset: 0, 0
+  index: -1

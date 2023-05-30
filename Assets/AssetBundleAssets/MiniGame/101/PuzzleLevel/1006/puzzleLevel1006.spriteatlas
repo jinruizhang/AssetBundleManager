@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: puzzleLevel1006
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 30177d69fcae446ae81b6f19291ee96b, type: 3}
+    bindAsDefault: 0
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: a5d71250fe2254dd7b8418fab267c4d2, type: 3}
+  - {fileID: 21300000, guid: 577e6ef2e89e645cfb27a98b064c0704, type: 3}
+  - {fileID: 21300000, guid: 656a03e37f4624880872e8a3e9a19f0d, type: 3}
+  - {fileID: 21300000, guid: 4ca8ff260cf064403aa5f21b8b51bfd7, type: 3}
+  - {fileID: 21300000, guid: d9ad9836986ca4860a71eaf08222360c, type: 3}
+  - {fileID: 21300000, guid: cc5e4927648ca4e01854617912bfc755, type: 3}
+  - {fileID: 21300000, guid: 7422ffb700a144c5081e1815b10f526d, type: 3}
+  - {fileID: 21300000, guid: d2ef48face4d84c3ebf9e8ef830f42c6, type: 3}
+  - {fileID: 21300000, guid: 9a9a308e00df44c29988ce8e3ed242b4, type: 3}
+  - {fileID: 21300000, guid: 8a37672f18db94023b89c3434fbd983c, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - img_game_3
+  - img_game_bg3
+  - img_game_bg2
+  - img_game_bg4
+  - img_game_2
+  - img_game_6
+  - img_game_bg1
+  - img_game_1
+  - img_game_4
+  - img_game_5
+  m_RenderDataMap: {}
+  m_Tag: puzzleLevel1006
+  m_IsVariant: 0
