@@ -61,7 +61,7 @@
 		{
 			"BundleName":"assetbundleminigame_101.bundle",
 			"Length":3583620,
-			"Hash":"4d26567ee000c8c3477f3cb0fe911d78",
+			"Hash":"887a628aa4163e1c80e32c85b198c0e4",
 			"Group":"MiniGame",
 			"Assets":[
 				{
@@ -914,7 +914,7 @@
 		{
 			"BundleName":"assetbundleminigame_preres.bundle",
 			"Length":2614089,
-			"Hash":"8f357559db96e8f35834374d047c1bde",
+			"Hash":"4b1048267e730040fbd0f6a84783dfc7",
 			"Group":"MiniGame",
 			"Assets":[
 				{
@@ -2483,7 +2483,7 @@
 		{
 			"BundleName":"assetbundleminigame_spine.bundle",
 			"Length":48997,
-			"Hash":"34675d7e572d62c69d53cea6691bc45d",
+			"Hash":"e1111f53ead0267f7fa8903e64ea2376",
 			"Group":"MiniGame",
 			"Assets":[
 				{
@@ -2533,7 +2533,7 @@
 		{
 			"BundleName":"assetbundleminigamescene.bundle",
 			"Length":117667,
-			"Hash":"7501aadeefbdaeb5297f49251afbb7fb",
+			"Hash":"36d43731f96e0322232547036b8f5b61",
 			"IsScene":true,
 			"Group":"MiniGame",
 			"Assets":[

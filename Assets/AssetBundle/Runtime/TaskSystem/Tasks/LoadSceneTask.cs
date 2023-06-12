@@ -53,9 +53,17 @@ namespace ResourceTools
             /// </summary>
             ScenesLoaded,
         }
+        
+        private enum LoadType
+        {
+            None,
+            Done,
+        }
 
 
         protected Action<bool, AsyncOperation> onFinished;
+        
+        protected Action<bool> doneFinished;
 
         protected BundleRuntimeInfo bundleInfo;
 
@@ -80,6 +88,7 @@ namespace ResourceTools
         
         private Action<bool, Object> onDependencyLoaded;
 
+        private LoadType loadType;
 
         public override float Progress
         {
@@ -100,12 +109,29 @@ namespace ResourceTools
             bundleInfo = AssetBundlesManager.bundleInfoDict[assetInfo.BundleName];
             this.onFinished = onFinished;
             onDependencyLoaded = OnDependencyLoaded;
+            loadType = LoadType.None;
+        }
+        
+        public LoadSceneTask(TaskExcutor owner, string name, Action<bool> doneFinished) : base(owner, name)
+        {
+            assetInfo = AssetBundlesManager.assetInfoDict[Name];
+            bundleInfo = AssetBundlesManager.bundleInfoDict[assetInfo.BundleName];
+            onDependencyLoaded = OnDependencyLoaded;
+            this.doneFinished = doneFinished;
+            loadType = LoadType.Done;
         }
 
         protected void LoadAsync()
         {
-            asyncOp = SceneManager.LoadSceneAsync(Name);
-            asyncOp.allowSceneActivation = false;
+            asyncOp = SceneManager.LoadSceneAsync(Name, LoadSceneMode.Additive);
+            if (loadType == LoadType.None)
+            {
+                asyncOp.allowSceneActivation = false;
+            }
+            else
+            {
+                asyncOp.allowSceneActivation = true;
+            }
         }
 
 
@@ -239,13 +265,27 @@ namespace ResourceTools
             if (loadAssetState == LoadSceneStatus.ScenesLoading)
             {
                 TaskState = TaskStatus.Executing;
-                //allowSceneActivation == false 时，load 场景结束后场景进度为0.9f
-                if (asyncOp.progress < 0.89f)
-                {
-                    return;
-                }
 
-                loadAssetState = LoadSceneStatus.ScenesLoaded;
+                if (loadType == LoadType.None)
+                {
+                    //allowSceneActivation == false 时，load 场景结束后场景进度为0.9f
+                    if (asyncOp.progress < 0.89f)
+                    {
+                        return;
+                    }
+
+                    loadAssetState = LoadSceneStatus.ScenesLoaded;
+                }
+                else if (loadType == LoadType.Done)
+                {
+                    if (!asyncOp.isDone)
+                    {
+                        return;
+                    }
+                    
+                    loadAssetState = LoadSceneStatus.ScenesLoaded;                
+                }
+               
             }
 
             //4.Asset加载结束
@@ -265,11 +305,25 @@ namespace ResourceTools
                         AssetBundlesManager.CheckBundleLifeCycle(bundleInfo);
                     }
 
-                    onFinished?.Invoke(false, null);
+                    if (loadType == LoadType.None)
+                    {
+                        onFinished?.Invoke(false, null);
+                    }
+                    else
+                    {
+                        doneFinished?.Invoke(false);
+                    }
                 }
                 else
                 {
-                    onFinished?.Invoke(true, asyncOp);
+                    if (loadType == LoadType.None)
+                    {
+                        onFinished?.Invoke(true, asyncOp);
+                    }
+                    else
+                    {
+                        doneFinished?.Invoke(true);
+                    }
                 }
             }
         }

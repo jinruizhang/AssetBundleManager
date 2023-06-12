@@ -20,7 +20,7 @@ MonoBehaviour:
   - Directory: Assets/AssetBundleAssets/MiniGame/101
     Mode: 0
     Group: MiniGame
-    InPackage: 0
+    InPackage: 1
   - Directory: Assets/AssetBundleAssets/MiniGame/PreRes
     Mode: 0
     Group: MiniGame

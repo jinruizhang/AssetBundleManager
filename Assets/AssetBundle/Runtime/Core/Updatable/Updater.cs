@@ -84,10 +84,10 @@ namespace ResourceTools
         /// <summary>
         /// 移除更新完毕回调，主要给边玩边下模式调用
         /// </summary>
-        internal void RemoveBundleUpdatedCallback(Action<bool, int, long, int, long, string, string> onUpdated)
-        {
-            this.onUpdated -= onUpdated;
-        }
+        // internal void RemoveBundleUpdatedCallback(Action<bool, int, long, int, long, string, string> onUpdated)
+        // {
+        //     this.onUpdated -= onUpdated;
+        // }
 
 
         private List<DownloadFileTask> _tasks = new List<DownloadFileTask>();
@@ -127,7 +127,7 @@ namespace ResourceTools
                 
             }
 
-            this.onUpdated += onUpdated;
+            this.onUpdated = onUpdated;
         }
         
 
@@ -171,6 +171,7 @@ namespace ResourceTools
                 state = UpdaterStatus.Free;
                 onUpdated?.Invoke(false, UpdatedCount, UpdatedLength, TotalCount, TotalLength, bundleInfo.BundleName,
                     UpdateGroup);
+                
                 return;
             }
 

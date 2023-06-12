@@ -138,6 +138,12 @@ namespace ResourceTools
             {
                 return false;
             }
+            
+            // StreamingAssets 中的文件直接返回true,Android 平台下 StreamingAssets 中的文件不能通过File来获取
+            if (!info.InReadWrite)
+            {
+                return true;
+            }
 
             return File.Exists(info.LoadPath);
         }
@@ -327,7 +333,7 @@ namespace ResourceTools
 
             if (bundleInfoDict.TryGetValue(bundleName, out BundleRuntimeInfo oldBundleRuntimeInfo))
             {
-                oldBundleRuntimeInfo.Bundle?.Unload(true);
+                oldBundleRuntimeInfo.Bundle?.Unload(false);
                 bundleRuntimeInfo.UsedAssets = oldBundleRuntimeInfo.UsedAssets;
                 bundleRuntimeInfo.DependencyBundles = oldBundleRuntimeInfo.DependencyBundles;
                 
@@ -676,6 +682,31 @@ namespace ResourceTools
                 SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single).completed += (op) =>
                 {
                     loadedCallback?.Invoke(true, null);
+                };
+                return;
+            }
+#endif
+            if (!CheckAssetReady(sceneName))
+            {
+                return;
+            }
+
+            //创建加载场景的任务
+            LoadSceneTask task = new LoadSceneTask(taskExcutor, sceneName, loadedCallback);
+            taskExcutor.AddTask(task);
+        }
+        
+        /// <summary>
+        /// 加载场景Done之后回调
+        /// </summary>
+        public static void LoadScene(string sceneName, Action<bool> loadedCallback)
+        {
+#if UNITY_EDITOR
+            if (IsEditorMode)
+            {
+                SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single).completed += (op) =>
+                {
+                    loadedCallback?.Invoke(true);
                 };
                 return;
             }

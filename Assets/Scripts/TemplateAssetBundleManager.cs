@@ -313,7 +313,10 @@ public class TemplateAssetBundleManager : MonoBehaviour
             sb.AppendLine("更新文件数：" + updater.TotalCount);
             sb.AppendLine("更新大小：" + updater.TotalLength);
             Debug.Log(sb.ToString());
-            FindObjectOfType<DownloadControl>().Info.text = sb.ToString();
+            if ( FindObjectOfType<DownloadControl>())
+            {
+                FindObjectOfType<DownloadControl>().Info.text = sb.ToString();
+            }
             sb.Clear();
         }
        
@@ -347,7 +350,7 @@ public class TemplateAssetBundleManager : MonoBehaviour
            
        });
        
-       FindObjectOfType<DownloadControl>().DownloadButton.SetActive(true);
+       FindObjectOfType<DownloadControl>().DownloadButton?.SetActive(true);
 
    }
             
