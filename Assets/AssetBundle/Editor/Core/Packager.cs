@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace ResourceTools.Editor
 {
@@ -13,15 +14,18 @@ namespace ResourceTools.Editor
     public static class Packager
     {
 
+        public static BuildTarget currentTargetPlatform = BuildTarget.Android;
         /// <summary>
         /// 执行打包管线
         /// </summary>
-        public static void ExecutePackagePipeline(BuildAssetBundleOptions options, BuildTarget targetPlatform, bool isAnalyzeRedundancy, bool isCopyToStreamingAssets,string copyGroup)
+        public static void ExecutePackagePipeline(BuildAssetBundleOptions options, BuildTarget targetPlatform, bool isAnalyzeRedundancy,string copyGroup)
         {
+
+            currentTargetPlatform = targetPlatform;
             
             /// 获取最终打包输出目录
-            string finalOutputPath = GetFinalOutputPath(targetPlatform);
-            int manifestVersion = PkgUtil.PkgCfg.ManifestVersion;
+            string finalOutputPath = GetFinalOutputPath(currentTargetPlatform);
+            int manifestVersion = PkgUtil.PkgCfg.ManifestVersion(targetPlatform);
 
 
             /// 创建打包输出目录
@@ -33,29 +37,100 @@ namespace ResourceTools.Editor
 
             /// 生成资源清单文件
             ResourceToolsManifest manifest = GenerateManifestFile(finalOutputPath, abBuildList,unityManifest,manifestVersion);
-            
-            /// TODO 将更新Bundle生成一个文件
-            /// 在版本号同级目录下记录一个 bundle-hash 的键值对
-            // CreateUpdateManifest(finalOutputPath, copyGroup, manifest);
 
+            /// 生成StreamingAssets 下资源
+            CreateStreamingAssets(targetPlatform,finalOutputPath, manifest);
             
+            /// 记录没有变化的Bundle
+            ChangeBundleVersion(manifest,targetPlatform);
             
-            /// 将Bundle复制到StreamingAssets下
-            if (isCopyToStreamingAssets && manifestVersion == 1)
-            {
-                CopyToStreamingAssets(finalOutputPath,manifest);
-            }
+            /// 生成Manifest文件
+            FileUtil.CreateFile(Path.Combine(finalOutputPath,AssetBundlesConfig.ManifestFileName), manifest);
             
             /// 创建Version相关的版本
             CreateVersionFile(targetPlatform);
-
-            
             
             /// 资源清单版本号自增
             ChangeManifestVersion();
 
         }
+        
+        public static void CreateStreamingAssets(BuildTarget targetPlatform, string outputPath,ResourceToolsManifest manifest)
+        {
+            bool copyTag = false;
+            if (!PkgUtil.PkgCfg.Versions.TryGetValue(targetPlatform,out string cfgVersion))
+            {
+                PkgUtil.PkgCfg.Versions.Add(targetPlatform, Application.version);
+                copyTag = true;
+            }
+            else if (!Application.version.Equals(cfgVersion))
+            {
+                copyTag = true;
+            }
+            
+            /// 将特定的Bundle复制到StreamingAssets下
+            if (copyTag)
+            {
+                CopyToStreamingAssets(outputPath,manifest);
+                PkgUtil.PkgCfg.Versions[targetPlatform] = Application.version;
+            }
+        }
 
+        public static void ChangeBundleVersion(ResourceToolsManifest manifest,BuildTarget targetPlatform)
+        {
+            string finalOutputPath = GetFinalOutputPath(targetPlatform);
+
+            
+            if (!PkgUtil.PkgCfg.BundleDatas.TryGetValue(targetPlatform, out SerializableDictionary<string, BundleItem> bundleDatas))
+            {
+                bundleDatas = new SerializableDictionary<string, BundleItem> ();
+                PkgUtil.PkgCfg.BundleDatas.Add(targetPlatform, bundleDatas);
+            }
+            
+            /// 移除已经删除的bundle
+            List<string> keysToRemove = new List<string>();
+            foreach (var key in bundleDatas.Keys)
+            {
+                if (!manifest.Contains(key))
+                {
+                    keysToRemove.Add(key);
+                }
+            }
+            
+            
+            foreach (var key in keysToRemove)
+            {
+                bundleDatas.Remove(key);
+            }
+            
+            foreach (BundleManifestInfo bundleManifestInfo in manifest.Bundles)
+            {
+                if (!bundleDatas.TryGetValue(bundleManifestInfo.BundleName, out BundleItem bundleItem))
+                {
+                    bundleItem = new BundleItem(bundleManifestInfo);
+                    bundleDatas.Add(bundleManifestInfo.BundleName, bundleItem);
+                }
+                else if (bundleItem.Hash != bundleManifestInfo.Hash)
+                {
+                   bundleItem.Hash = bundleManifestInfo.Hash;
+                   bundleItem.VersionName = bundleManifestInfo.VersionName;
+                   bundleItem.VersionCode = bundleManifestInfo.VersionCode;
+                }
+                else
+                {
+                    bundleManifestInfo.VersionName = bundleItem.VersionName;
+                    bundleManifestInfo.VersionCode = bundleItem.VersionCode;
+                    string bundlePath = Path.Combine(finalOutputPath, bundleManifestInfo.BundleName);
+                    
+                    if (File.Exists(bundlePath))
+                    {
+                        File.Delete(bundlePath);
+                    }
+                    
+                }
+            }
+
+        }
        
 
         
@@ -133,6 +208,11 @@ namespace ResourceTools.Editor
                 abInfo.Group = AssetCollector.GetAssetBundleGroup(abInfo.BundleName);  //标记资源组
 
                 abInfo.Assets = new AssetManifestInfo[abBulid.assetNames.Length];
+
+                abInfo.VersionName = Application.version;
+                
+                abInfo.VersionCode =  PkgUtil.PkgCfg.ManifestVersion(currentTargetPlatform);
+                
                 for (int j = 0; j < abBulid.assetNames.Length; j++)
                 {
                     AssetManifestInfo assetInfo = new AssetManifestInfo();
@@ -145,9 +225,6 @@ namespace ResourceTools.Editor
 
                
             }
-            
-            FileUtil.CreateFile(Path.Combine(outputPath,AssetBundlesConfig.ManifestFileName), manifest);
-
             return manifest;
             
         }
@@ -158,7 +235,7 @@ namespace ResourceTools.Editor
         private static void ChangeManifestVersion()
         {
             //自增
-            PkgUtil.PkgCfg.ManifestVersion++;
+            PkgUtil.PkgCfg.ManifestVersions[currentTargetPlatform]++;
         }
 
 
@@ -177,7 +254,7 @@ namespace ResourceTools.Editor
             }
             
             AssetBundlesVersion bundlesVersion = new AssetBundlesVersion();
-            bundlesVersion.ManifestVersion = PkgUtil.PkgCfg.ManifestVersion;
+            bundlesVersion.ManifestVersion = PkgUtil.PkgCfg.ManifestVersion(targetPlatform);
             bundlesVersion.AppVersion = Application.version;
             // bundlesVersion.RemoteLoadPath = PkgUtil.PkgCfg.ServerUrl[(int)PkgUtil.PkgCfg.TargetPlatform];
             bundlesVersion.Platform = targetPlatform.ToString();
@@ -270,6 +347,7 @@ namespace ResourceTools.Editor
                     //跳过并非指定要复制的资源组的资源文件
                     continue;
                 }
+                
 
                 item.CopyTo(Util.GetReadOnlyPath(item.Name));
             }
@@ -316,7 +394,7 @@ namespace ResourceTools.Editor
         /// </summary>
         private static string GetFinalOutputPath(BuildTarget targetPlatform)
         {
-            int manifestVersion = PkgUtil.PkgCfg.ManifestVersion;
+            int manifestVersion = PkgUtil.PkgCfg.ManifestVersion(targetPlatform);
             string dir =  Application.version + AssetBundlesConfig.Splicing + manifestVersion;
             string result = Path.Combine(GetVersionOutputPath(targetPlatform) ,dir);
             return result;

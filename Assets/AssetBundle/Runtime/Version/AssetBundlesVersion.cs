@@ -34,7 +34,7 @@ namespace ResourceTools
 
         public string GetRemoteBundleUrl()
         {
-            return Path.Combine(Util.GetRemoteUrl(), AppVersion + AssetBundlesConfig.Splicing + ManifestVersion);
+            return Path.Combine(Util.GetRemoteVersionUrl(), AppVersion + AssetBundlesConfig.Splicing + ManifestVersion);
         }
         
     }

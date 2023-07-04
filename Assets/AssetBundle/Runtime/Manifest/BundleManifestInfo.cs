@@ -34,6 +34,15 @@ namespace ResourceTools
         /// </summary>
         public string Group;
         
+        /// <summary>
+        /// 指定版本添加或者修改的资源
+        /// </summary>
+        public string VersionName;
+        
+        /// <summary>
+        /// 第几次打包资源
+        /// </summary>
+        public int VersionCode;
 
         /// <summary>
         /// 所有Asset清单信息

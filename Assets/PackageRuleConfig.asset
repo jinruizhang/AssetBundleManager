@@ -17,6 +17,10 @@ MonoBehaviour:
     Mode: 0
     Group: MiniGame
     InPackage: 0
+  - Directory: Assets/AssetBundleAssets/Json/TestJson
+    Mode: 0
+    Group: MiniGame
+    InPackage: 0
   - Directory: Assets/AssetBundleAssets/MiniGame/101
     Mode: 0
     Group: MiniGame
@@ -30,6 +34,6 @@ MonoBehaviour:
     Group: MiniGame
     InPackage: 0
   - Directory: Assets/AssetBundleAssets/MiniGameScene
-    Mode: 0
+    Mode: 1
     Group: MiniGame
     InPackage: 0

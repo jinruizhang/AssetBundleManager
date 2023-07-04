@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24210f5109c8c2459ccac71fce807da, type: 3}
   m_Name: PackageConfig
   m_EditorClassIdentifier: 
-  ManifestVersion: 3
-  TargetPlatform: 0
+  TargetPlatform: 13
   ServerUrl:
   - 
   - 
@@ -22,3 +21,57 @@ MonoBehaviour:
   IsAnalyzeRedundancy: 0
   IsCopyToStreamingAssets: 1
   CopyGroup: Base
+  Versions:
+    Keys: 0d000000
+    Values:
+    - 2
+  ManifestVersions:
+    Keys: 0d00000009000000
+    Values: 0200000001000000
+  BundleDatas:
+    Keys: 0d000000
+    Values:
+    - Keys:
+      - assetbundlejson_minigame.bundle
+      - assetbundleminigame_101.bundle
+      - assetbundleminigame_preres.bundle
+      - assetbundleminigame_spine.bundle
+      - assetbundleminigamescene.bundle
+      - assetbundlejson_testjson.bundle
+      Values:
+      - BundleName: assetbundlejson_minigame.bundle
+        VersionName: 1
+        Hash:
+          serializedVersion: 2
+          Hash: 36beb4f0005bfa173d8cae14c01b7513
+        VersionCode: 1
+      - BundleName: assetbundleminigame_101.bundle
+        VersionName: 1
+        Hash:
+          serializedVersion: 2
+          Hash: aa0a7b8b6a4b72557457e716fef04d79
+        VersionCode: 2
+      - BundleName: assetbundleminigame_preres.bundle
+        VersionName: 1
+        Hash:
+          serializedVersion: 2
+          Hash: 4b1048267e730040fbd0f6a84783dfc7
+        VersionCode: 1
+      - BundleName: assetbundleminigame_spine.bundle
+        VersionName: 1
+        Hash:
+          serializedVersion: 2
+          Hash: e1111f53ead0267f7fa8903e64ea2376
+        VersionCode: 1
+      - BundleName: assetbundleminigamescene.bundle
+        VersionName: 1
+        Hash:
+          serializedVersion: 2
+          Hash: 36d43731f96e0322232547036b8f5b61
+        VersionCode: 1
+      - BundleName: assetbundlejson_testjson.bundle
+        VersionName: 2
+        Hash:
+          serializedVersion: 2
+          Hash: 981a81963ee5feff1239e3dfe92c5ce3
+        VersionCode: 1

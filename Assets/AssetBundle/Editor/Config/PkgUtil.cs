@@ -13,8 +13,8 @@ namespace ResourceTools.Editor
         
         public enum CustomPlatforms
         {
-            Android = 0,
-            iOS,
+            Android = (int)BuildTarget.Android,
+            iOS = (int)BuildTarget.iOS,
         }
 
         /// <summary>

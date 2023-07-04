@@ -93,7 +93,8 @@ namespace ResourceTools
         /// 项目的远端URL
         /// </summary>
         public static string RemoteUrl = string.Empty;
-
+        
+        
         /// <summary>
         /// 资源更新Uri前缀，下载资源文件时会以 UpdateUriPrefix/BundleName 为下载地址
         /// </summary>

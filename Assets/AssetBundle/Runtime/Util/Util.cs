@@ -12,14 +12,26 @@ namespace ResourceTools
 
         public static string GetRemoteUrl()
         {
-
             if (String.IsNullOrEmpty(AssetBundlesManager.RemoteUrl))
             {
-                Debug.LogError("The remote URL is empty!");
+                Debug.LogError("The remote Version URL is empty!");
             }
             
             return AssetBundlesManager.RemoteUrl;
-
+        }
+        /// <summary>
+        /// 为什么要分开成两个而不是用Application.version 项目中有获取版本号的接口，没有使用Unity的
+        /// </summary>
+        /// <returns></returns>
+        public static string GetRemoteVersionUrl()
+        {
+            /// 如果RemoteUrl 为空，就报错
+            if (String.IsNullOrEmpty(AssetBundlesManager.RemoteUrl))
+            {
+                Debug.LogError("The remote Version URL is empty!");
+            }
+            
+            return  Path.Combine(AssetBundlesManager.RemoteUrl, Application.version) ;
         }
         
 

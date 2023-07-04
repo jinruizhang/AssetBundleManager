@@ -142,8 +142,7 @@ namespace ResourceTools.Editor
                 EditorGUILayout.LabelField("游戏版本号：" + Application.version,GUILayout.Width(200));
 
                 EditorGUILayout.LabelField("资源清单版本号：", GUILayout.Width(100));
-                PkgUtil.PkgCfg.ManifestVersion = EditorGUILayout.IntField(PkgUtil.PkgCfg.ManifestVersion, GUILayout.Width(50));
-
+                PkgUtil.PkgCfg.ManifestVersions[(BuildTarget)selectedPlatform] = EditorGUILayout.IntField(PkgUtil.PkgCfg.ManifestVersion((BuildTarget)selectedPlatform), GUILayout.Width(50));
             }
 
             EditorGUILayout.Space();
@@ -249,17 +248,11 @@ namespace ResourceTools.Editor
                         EditorUtility.DisplayDialog("提示", "请设置正常的打包渠道", "确认");
                         return;
                     }
-                    
-                    
-                    var platform = BuildTarget.Android;
-                    switch (PkgUtil.PkgCfg.TargetPlatform)
-                    {
-                        case PkgUtil.CustomPlatforms.iOS:
-                            platform = BuildTarget.iOS;
-                            break;
-                    }
 
-                    Packager.ExecutePackagePipeline( PkgUtil.PkgCfg.Options, platform, PkgUtil.PkgCfg.IsAnalyzeRedundancy, PkgUtil.PkgCfg.IsCopyToStreamingAssets, PkgUtil.PkgCfg.CopyGroup);
+
+                    var platform = (BuildTarget) PkgUtil.PkgCfg.TargetPlatform;
+
+                    Packager.ExecutePackagePipeline( PkgUtil.PkgCfg.Options, platform, PkgUtil.PkgCfg.IsAnalyzeRedundancy, PkgUtil.PkgCfg.CopyGroup);
                         
 
 

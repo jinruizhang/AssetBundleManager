@@ -59,6 +59,23 @@ namespace ResourceTools
             return false;
         }
         
+        public bool Contains(string bundleName)
+        {
+            if (Bundles == null)
+            {
+                return false;
+            }
+            
+            foreach (var item in Bundles)
+            {
+                if (item.BundleName == bundleName)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
 

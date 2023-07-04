@@ -48,7 +48,7 @@ public class TemplateAssetBundleManager : MonoBehaviour
         
 #if UNITY_ANDROID
         var RemoteUrl = "https://8059-040-public.s3.amazonaws.com/websitebox-ig/puzzlemaster_a/test/Template";
-        AssetBundlesManager.RemoteUrl = Path.Combine(RemoteUrl, "Android", Application.version);
+        AssetBundlesManager.RemoteUrl = Path.Combine(RemoteUrl, "Android");
 #elif UNITY_IOS
         AssetBundlesManager.RemoteUrl = "IOS Bundle  URL";
 #endif
@@ -210,7 +210,7 @@ public class TemplateAssetBundleManager : MonoBehaviour
 
             ///TODO  服务器没有文件就没有回调
             var respone = BFHttpManager.GetInstance().SendMessageAsync(BFNetworkEvent.RequestType.REQUEST_TEXT,
-                Path.Combine(Util.GetRemoteUrl(), AssetBundlesConfig.VersionFileName), String.Empty, String.Empty);
+                Path.Combine(Util.GetRemoteVersionUrl(), AssetBundlesConfig.VersionFileName), String.Empty, String.Empty);
             await respone;
             if (!respone.Result.IsSuccess)
             {
@@ -350,7 +350,7 @@ public class TemplateAssetBundleManager : MonoBehaviour
            
        });
        
-       FindObjectOfType<DownloadControl>().DownloadButton?.SetActive(true);
+       FindObjectOfType<DownloadControl>()?.DownloadButton?.SetActive(true);
 
    }
             

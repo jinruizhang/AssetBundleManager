@@ -1,6 +1,6 @@
 {
-	"GameVersion":"1",
-	"ManifestVersion":2,
+	"GameVersion":"2",
+	"ManifestVersion":1,
 	"Bundles":[
 		{
 			"BundleName":"assetbundlejson_minigame.bundle",
@@ -54,6 +54,22 @@
 				},
 				{
 					"AssetName":"Assets/AssetBundleAssets/Json/MiniGame/StorySceneJigsaw.json",
+					"Type":"TextAsset",
+					"Dependencies":[
+					]
+				}
+			]
+		},
+		{
+			"BundleName":"assetbundlejson_testjson.bundle",
+			"Length":1559,
+			"Hash":"981a81963ee5feff1239e3dfe92c5ce3",
+			"Group":"MiniGame",
+			"VersionName":"2",
+			"VersionCode":1,
+			"Assets":[
+				{
+					"AssetName":"Assets/AssetBundleAssets/Json/TestJson/StorySceneJigsaw_test.json",
 					"Type":"TextAsset",
 					"Dependencies":[
 					]

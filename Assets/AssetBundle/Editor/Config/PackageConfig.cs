@@ -11,10 +11,10 @@ namespace ResourceTools.Editor
     /// </summary>
     public class PackageConfig : ScriptableObject
     {
-        /// <summary>
-        /// 资源清单版本号
-        /// </summary>
-        public int ManifestVersion;
+        // /// <summary>
+        // /// 资源清单版本号
+        // /// </summary>
+        // public int ManifestVersion;
 
         public PkgUtil.CustomPlatforms TargetPlatform;
 
@@ -51,6 +51,18 @@ namespace ResourceTools.Editor
         /// </summary>
         public string CopyGroup = AssetBundlesConfig.DefaultGroup;
 
+        /// <summary>
+        /// 如果版本号发生改变，就清空StreamingAssets目录重新生成
+        /// </summary>
+        public SerializableDictionary<BuildTarget, string> Versions = new SerializableDictionary<BuildTarget, string>();
+
+        public SerializableDictionary<BuildTarget, int> ManifestVersions = new SerializableDictionary<BuildTarget, int>();
+
+        /// <summary>
+        /// 所有的Bundle数据信息
+        /// </summary>
+        public SerializableDictionary<BuildTarget, SerializableDictionary<string, BundleItem>> BundleDatas = new SerializableDictionary<BuildTarget, SerializableDictionary<string, BundleItem>>() ;
+        
         [MenuItem("ResourceTools/创建打包配置文件")]
         private static void CreateConfig()
         {
@@ -71,18 +83,32 @@ namespace ResourceTools.Editor
 
                 cfg.OutputPath = "";
                 
-                cfg.ManifestVersion = 1;
+                cfg.ManifestVersions = new SerializableDictionary<BuildTarget, int>();
 
                 cfg.IsCopyToStreamingAssets = true;
 
                 cfg.CopyGroup = AssetBundlesConfig.DefaultGroup;
 
+                cfg.BundleDatas = new SerializableDictionary<BuildTarget, SerializableDictionary<string, BundleItem>>();
+
+                cfg.Versions = new SerializableDictionary<BuildTarget, string>();
+
                 EditorUtility.SetDirty(cfg);
             }
         }
-
-
-
+        
+        public int ManifestVersion(BuildTarget target)
+        {
+            if (ManifestVersions.TryGetValue(target, out int manifestVersion))
+            {
+                return manifestVersion;
+            }
+            else
+            {
+                ManifestVersions.Add(target, 1);
+                return 1;
+            }
+        }
         
     }
 }
