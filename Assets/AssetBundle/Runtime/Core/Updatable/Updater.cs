@@ -110,7 +110,7 @@ namespace ResourceTools
                 //创建下载文件的任务
                 string localFilePath = Util.GetReadWritePath(updateBundleInfo.BundleName);
 
-                string downloadUri = Path.Combine(Util.GetRemoteUrl(), updateBundleInfo.VersionName, 
+                string downloadUri = Path.Combine(Util.GetDownloadUrl(), updateBundleInfo.VersionName, 
                     updateBundleInfo.VersionName + AssetBundlesConfig.Splicing + updateBundleInfo.VersionCode,
                     updateBundleInfo.BundleName);
                 // string downloadUri = Path.Combine(ResourceToolsUpdater.UpdateUriPrefix, updateBundleInfo.BundleName);

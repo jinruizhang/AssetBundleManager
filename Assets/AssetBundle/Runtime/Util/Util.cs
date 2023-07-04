@@ -17,13 +17,14 @@ namespace ResourceTools
                 Debug.LogError("The remote Version URL is empty!");
             }
             
-            return AssetBundlesManager.RemoteUrl;
+            return Path.Combine(AssetBundlesManager.RemoteUrl, Application.version);
         }
+        
         /// <summary>
-        /// 为什么要分开成两个而不是用Application.version 项目中有获取版本号的接口，没有使用Unity的
+        /// 下载Bundle时使用的URL
         /// </summary>
         /// <returns></returns>
-        public static string GetRemoteVersionUrl()
+        public static string GetDownloadUrl()
         {
             /// 如果RemoteUrl 为空，就报错
             if (String.IsNullOrEmpty(AssetBundlesManager.RemoteUrl))
@@ -31,7 +32,7 @@ namespace ResourceTools
                 Debug.LogError("The remote Version URL is empty!");
             }
             
-            return  Path.Combine(AssetBundlesManager.RemoteUrl, Application.version) ;
+            return  AssetBundlesManager.RemoteUrl;
         }
         
 

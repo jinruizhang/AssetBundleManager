@@ -210,7 +210,7 @@ public class TemplateAssetBundleManager : MonoBehaviour
 
             ///TODO  服务器没有文件就没有回调
             var respone = BFHttpManager.GetInstance().SendMessageAsync(BFNetworkEvent.RequestType.REQUEST_TEXT,
-                Path.Combine(Util.GetRemoteVersionUrl(), AssetBundlesConfig.VersionFileName), String.Empty, String.Empty);
+                Path.Combine(Util.GetRemoteUrl(), AssetBundlesConfig.VersionFileName), String.Empty, String.Empty);
             await respone;
             if (!respone.Result.IsSuccess)
             {
