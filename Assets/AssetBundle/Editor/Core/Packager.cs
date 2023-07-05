@@ -67,7 +67,14 @@ namespace ResourceTools.Editor
             {
                 copyTag = true;
             }
-            
+            else if (PkgUtil.PkgCfg.ManifestVersions.TryGetValue(targetPlatform, out int cfgManifestVersion))
+            {
+                if (cfgManifestVersion == 1)
+                {
+                    copyTag = true;
+                }
+            }
+
             /// 将特定的Bundle复制到StreamingAssets下
             if (copyTag)
             {
@@ -118,13 +125,23 @@ namespace ResourceTools.Editor
                 }
                 else
                 {
-                    bundleManifestInfo.VersionName = bundleItem.VersionName;
-                    bundleManifestInfo.VersionCode = bundleItem.VersionCode;
-                    string bundlePath = Path.Combine(finalOutputPath, bundleManifestInfo.BundleName);
                     
-                    if (File.Exists(bundlePath))
+                    string bundlePath = Path.Combine(finalOutputPath, bundleManifestInfo.BundleName);
+
+                    string recordBundlePath = Path.Combine(GetOutPutBundlePath(targetPlatform), bundleItem.VersionName,
+                        bundleItem.VersionName + AssetBundlesConfig.Splicing + bundleItem.VersionCode,
+                        bundleManifestInfo.BundleName);
+                    if (File.Exists(bundlePath) &&  File.Exists(recordBundlePath))
                     {
+                        bundleManifestInfo.VersionName = bundleItem.VersionName;
+                        bundleManifestInfo.VersionCode = bundleItem.VersionCode;
                         File.Delete(bundlePath);
+                    }
+                    else
+                    {
+                        bundleItem.Hash = bundleManifestInfo.Hash;
+                        bundleItem.VersionName = bundleManifestInfo.VersionName;
+                        bundleItem.VersionCode = bundleManifestInfo.VersionCode;
                     }
                     
                 }
@@ -388,6 +405,17 @@ namespace ResourceTools.Editor
             return Path.Combine(outputPath, targetPlatform.ToString(), Application.version);
         }
         
+        /// <summary>
+        /// 打包输出对应版本根目录
+        /// </summary>
+        /// <param name="targetPlatform"></param>
+        /// <returns></returns>
+        private static string GetOutPutBundlePath(BuildTarget targetPlatform)
+        {
+            string outputPath = Path.Combine(Directory.GetCurrentDirectory(),PkgUtil.PkgCfg.OutputPath);
+            return Path.Combine(outputPath, targetPlatform.ToString());
+        }
+
 
         /// <summary>
         /// 获取最终打包输出目录
