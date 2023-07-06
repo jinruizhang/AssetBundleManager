@@ -123,7 +123,7 @@ namespace ResourceTools.Editor
                    bundleItem.VersionName = bundleManifestInfo.VersionName;
                    bundleItem.VersionCode = bundleManifestInfo.VersionCode;
                 }
-                else
+                else if (bundleItem.VersionName != bundleManifestInfo.VersionName || bundleItem.VersionCode != bundleManifestInfo.VersionCode)
                 {
                     
                     string bundlePath = Path.Combine(finalOutputPath, bundleManifestInfo.BundleName);
