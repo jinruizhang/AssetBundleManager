@@ -247,16 +247,17 @@ namespace ResourceTools
                         InitRuntimeInfo(abInfo, isReadWrite);
                     }
 
-                    /// 再次检索本地的bundle 数据是防止用户如果更新了app，但是远端没有最新文件或者用户没有下载到最新的远端文件，记录的asset信息就不存在，新版本打到包内的资源就找不到
-                    foreach (BundleManifestInfo abInfo in localManifest.Bundles)
+                    /// 如果本地的版本号和沙盒中版本号不一致，将StreamingAssets中的Bundle资源替换沙盒中的
+                    /// 比如更新了APP 远端Manifest 资源还没加载到
+                    if (!localManifest.GameVersion.Equals(manifest.GameVersion))
                     {
-                        if (bundleInfoDict.ContainsKey(abInfo.BundleName))
+                        foreach (BundleManifestInfo abInfo in localManifest.Bundles)
                         {
-                            continue;
+                            InitRuntimeInfo(abInfo, false);
                         }
-
-                        InitRuntimeInfo(abInfo, false);
                     }
+
+                    
 
                     callback?.Invoke(true);
                     Debug.Log("ManifestFile，读取可读可写路径下信息结束");
