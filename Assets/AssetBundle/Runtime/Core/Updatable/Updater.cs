@@ -102,7 +102,7 @@ namespace ResourceTools
 
             foreach (BundleManifestInfo updateBundleInfo in UpdateBundles)
             {
-                if (downloadBundles.Contains(updateBundleInfo))
+                if (downloadBundles.Contains(updateBundleInfo) || string.IsNullOrEmpty(updateBundleInfo.VersionName))
                 {
                     continue;
                 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -56,7 +57,16 @@ namespace ResourceTools.Editor
         /// </summary>
         public SerializableDictionary<BuildTarget, string> Versions = new SerializableDictionary<BuildTarget, string>();
 
+        /// <summary>
+        /// 不同平台的ManifestVersion
+        /// </summary>
         public SerializableDictionary<BuildTarget, int> ManifestVersions = new SerializableDictionary<BuildTarget, int>();
+
+        /// <summary>
+        /// 导出项目名，StreamingAssets中放不同平台的文件夹，导出项目时根据这个目录结构删除指定的文件夹
+        /// </summary>
+        public SerializableDictionary<BuildTarget, string> ExportProjectName =
+            new SerializableDictionary<BuildTarget, string>();
 
         /// <summary>
         /// 所有的Bundle数据信息
@@ -109,6 +119,20 @@ namespace ResourceTools.Editor
                 return 1;
             }
         }
+        
+        public string ExportProjectLabelName(BuildTarget target)
+        {
+            if (ExportProjectName.TryGetValue(target, out string manifestVersion))
+            {
+                return manifestVersion;
+            }
+            else
+            {
+                ExportProjectName.Add(target, String.Empty);
+                return "";
+            }
+        }
+        
         
     }
 }

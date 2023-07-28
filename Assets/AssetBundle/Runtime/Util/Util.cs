@@ -112,7 +112,15 @@ namespace ResourceTools
         /// <returns></returns>
         public static string GetStreamingAssetsPath()
         {
-            string path = Path.Combine(Application.streamingAssetsPath, AssetBundlesConfig.AssetBundlesFolderName);
+            
+            string target = "Android";
+#if UNITY_IOS
+            target = "iOS";
+#elif !UNITY_ANDROID
+            Debug.LogError("不是Android 和 iOS 平台");
+#endif
+            
+            string path = Path.Combine(Application.streamingAssetsPath, AssetBundlesConfig.AssetBundlesFolderName, target);
 
             return path;
         }

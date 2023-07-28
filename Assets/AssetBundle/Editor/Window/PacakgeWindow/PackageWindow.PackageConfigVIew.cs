@@ -143,6 +143,7 @@ namespace ResourceTools.Editor
 
                 EditorGUILayout.LabelField("资源清单版本号：", GUILayout.Width(100));
                 PkgUtil.PkgCfg.ManifestVersions[(BuildTarget)selectedPlatform] = EditorGUILayout.IntField(PkgUtil.PkgCfg.ManifestVersion((BuildTarget)selectedPlatform), GUILayout.Width(50));
+                
             }
 
             EditorGUILayout.Space();
@@ -210,6 +211,24 @@ namespace ResourceTools.Editor
                     }
                 }
             }
+            
+            EditorGUILayout.Space();
+
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                EditorGUILayout.LabelField("导出项目目录：", GUILayout.Width(100));
+                PkgUtil.PkgCfg.ExportProjectName[(BuildTarget)selectedPlatform] = GUILayout.TextField(PkgUtil.PkgCfg.ExportProjectLabelName((BuildTarget)selectedPlatform));
+                if (GUILayout.Button("选择目录", GUILayout.Width(100)))
+                {
+                    string folder = EditorUtility.OpenFolderPanel("选择导出项目目录", PkgUtil.PkgCfg.ExportProjectLabelName((BuildTarget)selectedPlatform), Directory.GetCurrentDirectory());
+                    if (folder != string.Empty)
+                    {
+                        PkgUtil.PkgCfg.ExportProjectName[(BuildTarget)selectedPlatform] = folder.Replace(Directory.GetCurrentDirectory() + "/","");
+                    }
+                }
+            }
+
+            
 
             EditorGUILayout.Space();
 
@@ -248,6 +267,30 @@ namespace ResourceTools.Editor
                         EditorUtility.DisplayDialog("提示", "请设置正常的打包渠道", "确认");
                         return;
                     }
+
+                    if (!PkgUtil.PkgCfg.ExportProjectName.TryGetValue((BuildTarget)PkgUtil.PkgCfg.TargetPlatform, out string path) || String.IsNullOrEmpty(path))
+                    {
+                        EditorUtility.DisplayDialog("提示", "请先设置导出项目名，用于导出时删除指定平台下，不是该平台使用的Bundle文件", "确认");
+                    }
+
+
+                    if (PkgUtil.PkgCfg.TargetPlatform == PkgUtil.CustomPlatforms.Android)
+                    {
+#if !UNITY_ANDROID
+                        EditorUtility.DisplayDialog("提示", "切换平台在打包", "确认");
+                        return;
+#endif
+                    }
+                    else if (PkgUtil.PkgCfg.TargetPlatform == PkgUtil.CustomPlatforms.iOS)
+                    {
+#if !UNITY_IOS
+                        EditorUtility.DisplayDialog("提示", "切换平台在打包", "确认");
+                        return;
+#endif
+                    }
+                    
+                    
+                    
 
 
                     var platform = (BuildTarget) PkgUtil.PkgCfg.TargetPlatform;

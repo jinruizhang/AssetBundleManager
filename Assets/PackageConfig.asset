@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24210f5109c8c2459ccac71fce807da, type: 3}
   m_Name: PackageConfig
   m_EditorClassIdentifier: 
-  TargetPlatform: 13
+  TargetPlatform: 9
   ServerUrl:
   - 
   - 
@@ -22,14 +22,20 @@ MonoBehaviour:
   IsCopyToStreamingAssets: 1
   CopyGroup: Base
   Versions:
-    Keys: 0d000000
+    Keys: 0d00000009000000
     Values:
+    - 2
     - 2
   ManifestVersions:
     Keys: 0d00000009000000
-    Values: 0600000001000000
+    Values: 0100000001000000
+  ExportProjectName:
+    Keys: 090000000d000000
+    Values:
+    - build/crushBlock_ios
+    - build/crushBlock
   BundleDatas:
-    Keys: 0d000000
+    Keys: 0d00000009000000
     Values:
     - Keys:
       - assetbundlejson_minigame.bundle
@@ -44,7 +50,7 @@ MonoBehaviour:
         Hash:
           serializedVersion: 2
           Hash: 36beb4f0005bfa173d8cae14c01b7513
-        VersionCode: 4
+        VersionCode: 1
       - BundleName: assetbundleminigame_101.bundle
         VersionName: 1
         Hash:
@@ -56,22 +62,66 @@ MonoBehaviour:
         Hash:
           serializedVersion: 2
           Hash: 4b1048267e730040fbd0f6a84783dfc7
-        VersionCode: 4
+        VersionCode: 1
       - BundleName: assetbundleminigame_spine.bundle
         VersionName: 2
         Hash:
           serializedVersion: 2
           Hash: e1111f53ead0267f7fa8903e64ea2376
-        VersionCode: 4
+        VersionCode: 1
       - BundleName: assetbundleminigamescene.bundle
         VersionName: 2
         Hash:
           serializedVersion: 2
           Hash: 36d43731f96e0322232547036b8f5b61
-        VersionCode: 4
+        VersionCode: 1
       - BundleName: assetbundlejson_testjson.bundle
         VersionName: 2
         Hash:
           serializedVersion: 2
           Hash: 981a81963ee5feff1239e3dfe92c5ce3
+        VersionCode: 1
+    - Keys:
+      - assetbundlejson_minigame.bundle
+      - assetbundlejson_testjson.bundle
+      - assetbundleminigame_101.bundle
+      - assetbundleminigame_preres.bundle
+      - assetbundleminigame_spine.bundle
+      - assetbundleminigamescene.bundle
+      Values:
+      - BundleName: assetbundlejson_minigame.bundle
+        VersionName: 2
+        Hash:
+          serializedVersion: 2
+          Hash: b75c97167690ec9c6a1835c62beb854a
+        VersionCode: 1
+      - BundleName: assetbundlejson_testjson.bundle
+        VersionName: 2
+        Hash:
+          serializedVersion: 2
+          Hash: a828e5b87f0bf989175481c75fdcb227
+        VersionCode: 1
+      - BundleName: assetbundleminigame_101.bundle
+        VersionName: 2
+        Hash:
+          serializedVersion: 2
+          Hash: 7ed12f78b18b1a51b4bd45f435b22e6f
+        VersionCode: 1
+      - BundleName: assetbundleminigame_preres.bundle
+        VersionName: 2
+        Hash:
+          serializedVersion: 2
+          Hash: 80818e397adfd1184b4ad71792014ddb
+        VersionCode: 1
+      - BundleName: assetbundleminigame_spine.bundle
+        VersionName: 2
+        Hash:
+          serializedVersion: 2
+          Hash: ff245f62066684a8ece4816edaf99c74
+        VersionCode: 1
+      - BundleName: assetbundleminigamescene.bundle
+        VersionName: 2
+        Hash:
+          serializedVersion: 2
+          Hash: 3bb9e9c6529b401837a16c61eaea2f59
         VersionCode: 1

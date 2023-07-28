@@ -7,7 +7,7 @@
 			"Length":5572,
 			"Hash":"36beb4f0005bfa173d8cae14c01b7513",
 			"Group":"MiniGame",
-			"VersionName":"1",
+			"VersionName":"2",
 			"VersionCode":1,
 			"Assets":[
 				{
@@ -936,7 +936,7 @@
 			"Length":2614089,
 			"Hash":"4b1048267e730040fbd0f6a84783dfc7",
 			"Group":"MiniGame",
-			"VersionName":"1",
+			"VersionName":"2",
 			"VersionCode":1,
 			"Assets":[
 				{
@@ -2507,7 +2507,7 @@
 			"Length":48997,
 			"Hash":"e1111f53ead0267f7fa8903e64ea2376",
 			"Group":"MiniGame",
-			"VersionName":"1",
+			"VersionName":"2",
 			"VersionCode":1,
 			"Assets":[
 				{
@@ -2560,7 +2560,7 @@
 			"Hash":"36d43731f96e0322232547036b8f5b61",
 			"IsScene":true,
 			"Group":"MiniGame",
-			"VersionName":"1",
+			"VersionName":"2",
 			"VersionCode":1,
 			"Assets":[
 				{
