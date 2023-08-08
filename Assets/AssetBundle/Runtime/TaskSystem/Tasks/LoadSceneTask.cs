@@ -71,6 +71,8 @@ namespace ResourceTools
 
         protected AsyncOperation asyncOp;
 
+        protected LoadSceneMode sceneMode;
+
         /// <summary>
         /// Asset加载状态
         /// </summary>
@@ -103,19 +105,21 @@ namespace ResourceTools
             }
         }
 
-        public LoadSceneTask(TaskExcutor owner, string name, Action<bool, AsyncOperation> onFinished) : base(owner, name)
+        public LoadSceneTask(TaskExcutor owner, string name, Action<bool, AsyncOperation> onFinished, LoadSceneMode sceneMode = LoadSceneMode.Single) : base(owner, name)
         {
             assetInfo = AssetBundlesManager.assetInfoDict[Name];
             bundleInfo = AssetBundlesManager.bundleInfoDict[assetInfo.BundleName];
             this.onFinished = onFinished;
+            this.sceneMode = sceneMode;
             onDependencyLoaded = OnDependencyLoaded;
             loadType = LoadType.None;
         }
         
-        public LoadSceneTask(TaskExcutor owner, string name, Action<bool> doneFinished) : base(owner, name)
+        public LoadSceneTask(TaskExcutor owner, string name, Action<bool> doneFinished, LoadSceneMode sceneMode = LoadSceneMode.Single) : base(owner, name)
         {
             assetInfo = AssetBundlesManager.assetInfoDict[Name];
             bundleInfo = AssetBundlesManager.bundleInfoDict[assetInfo.BundleName];
+            this.sceneMode = sceneMode;
             onDependencyLoaded = OnDependencyLoaded;
             this.doneFinished = doneFinished;
             loadType = LoadType.Done;
@@ -123,7 +127,7 @@ namespace ResourceTools
 
         protected void LoadAsync()
         {
-            asyncOp = SceneManager.LoadSceneAsync(Name, LoadSceneMode.Additive);
+            asyncOp = SceneManager.LoadSceneAsync(Name, this.sceneMode);
             if (loadType == LoadType.None)
             {
                 asyncOp.allowSceneActivation = false;
