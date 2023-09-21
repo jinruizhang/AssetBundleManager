@@ -50,7 +50,7 @@ namespace ResourceTools
             
             foreach (var item in Bundles)
             {
-                if (item.Equals(bundleManifestInfo))
+                if (item.BundleName.Equals(bundleManifestInfo.BundleName))
                 {
                     return true;
                 }

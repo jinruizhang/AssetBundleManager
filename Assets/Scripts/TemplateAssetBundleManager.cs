@@ -82,6 +82,9 @@ public class TemplateAssetBundleManager : MonoBehaviour
             case LoadState.CreateEssentialFile:
                 StartCoroutine(createEssentialFile());
                 break;
+            case LoadState.LoadBundleData:
+                loadBundles();
+                break;
             case LoadState.LoadVersionFile:
                 checkVersionFile();
                 break;
@@ -93,9 +96,7 @@ public class TemplateAssetBundleManager : MonoBehaviour
                 AssetBundlesManager.SendDebugEvent("CheckoutBundles");
                 AssetBundlesManager.CheckoutBundles(checkoutBundles);
                 break;
-            case LoadState.LoadBundleData:
-                loadBundles();
-                break;
+           
         }
     }
 
@@ -160,7 +161,7 @@ public class TemplateAssetBundleManager : MonoBehaviour
             yield break;
         }
 
-        _state = LoadState.LoadVersionFile;
+        _state = LoadState.LoadBundleData;
 
     }
     
@@ -177,7 +178,7 @@ public class TemplateAssetBundleManager : MonoBehaviour
             
 
             AssetBundlesManager.SendDebugEvent("Persistent_Version_File_Not_Fount");
-            _state = LoadState.LoadBundleData;
+            _state = LoadState.None;
         }
 
         string varesionData = string.Empty;
@@ -216,7 +217,7 @@ public class TemplateAssetBundleManager : MonoBehaviour
             {
                 AssetBundlesManager.SendDebugEvent("RequestRemoteVersionFile Fail");
 
-                _state = LoadState.LoadBundleData;
+                _state = LoadState.None;
                 return;
             }
             AssetBundlesManager.SendDebugEvent("RequestRemoteVersionFile Success");
@@ -234,7 +235,7 @@ public class TemplateAssetBundleManager : MonoBehaviour
                 }
                 catch (Exception e)
                 {
-                    _state = LoadState.LoadBundleData;
+                    _state = LoadState.None;
                     return;
                 }
             
@@ -273,7 +274,7 @@ public class TemplateAssetBundleManager : MonoBehaviour
         {
 
             AssetBundlesManager.SendDebugEvent("DownloadManifestFile Fail");
-            _state = LoadState.LoadBundleData;
+            _state = LoadState.None;
             return;
         }
 
@@ -296,7 +297,7 @@ public class TemplateAssetBundleManager : MonoBehaviour
         {
 
             AssetBundlesManager.SendDebugEvent("UpdateBundleCunt 0");
-            _state = LoadState.LoadBundleData;
+            _state = LoadState.None;
             return;
         }
 
@@ -325,14 +326,13 @@ public class TemplateAssetBundleManager : MonoBehaviour
         //     AssetBundlesManager.UpdateAssets(OnFileDownloaded, updater.UpdateGroup);
         // }
 
-        _state = LoadState.LoadBundleData;
+        _state = LoadState.None;
     }
 
    
 
    private void loadBundles()
    {
-       _state = LoadState.None;
        
        AssetBundlesManager.SendDebugEvent("LoadBundles");
 
@@ -352,7 +352,14 @@ public class TemplateAssetBundleManager : MonoBehaviour
        
        FindObjectOfType<DownloadControl>()?.DownloadButton?.SetActive(true);
 
+
+       _state = LoadState.LoadVersionFile;
+       
+       
+       Debug.Log("1006bundle :" + AssetBundlesManager.IsBundleInLocality("assetbundleminigame_101_puzzlelevel_1006.bundle"));
    }
+   
+   
             
     
 }

@@ -53,6 +53,7 @@ namespace ResourceTools
         {
             return BundleName == other.BundleName && Length == other.Length && Hash == other.Hash && Group == other.Group;
         }
+        
     }
 }
 

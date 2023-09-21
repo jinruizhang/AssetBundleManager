@@ -236,15 +236,19 @@ namespace ResourceTools
                         }
                     }
 
+                    /// 加载所有的资源
                     foreach (BundleManifestInfo abInfo in manifest.Bundles)
                     {
                         bool isReadWrite = cache == null ? false : cache.Contains(abInfo);
-                        if (!isReadWrite && !localManifest.Contains(abInfo))
-                        {
-                            continue;
-                        }
 
-                        InitRuntimeInfo(abInfo, isReadWrite);
+                        if (isReadWrite)
+                        {
+                            InitRuntimeInfo(abInfo, true);
+                        }
+                        else if (localManifest.Contains(abInfo))
+                        {
+                            InitRuntimeInfo(abInfo, false);
+                        }
                     }
 
                     /// 如果本地的版本号和沙盒中版本号不一致，将StreamingAssets中的Bundle资源替换沙盒中的
@@ -346,6 +350,7 @@ namespace ResourceTools
             bundleRuntimeInfo.ManifestInfo = bundleManifestInfo;
             bundleRuntimeInfo.InReadWrite = inReadWrite;
 
+            
             foreach (AssetManifestInfo assetManifestInfo in bundleManifestInfo.Assets)
             {
                 AssetRuntimeInfo assetRuntimeInfo = new AssetRuntimeInfo();

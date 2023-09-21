@@ -309,21 +309,22 @@ namespace ResourceTools
 
                         totalCount++;
                         totalLength += checkInfo.RemoteInfo.Length;
-
                         break;
 
-                    case CheckStatus.InReadWrite:
-                        //最新版本已存放在读写区
-                        AssetBundlesManager.InitRuntimeInfo(checkInfo.ReadWriteInfo, true);
-                        break;
-
-                    case CheckStatus.InReadOnly:
-                        //最新版本已存放在只读区
-                        AssetBundlesManager.InitRuntimeInfo(checkInfo.ReadOnlyInfo, false);
-                        break;
+                    // /// 如果加载逻辑时先加载bundle在执行远端Bundle检测，下面的这两个步骤是可以省略？
+                    // case CheckStatus.InReadWrite:
+                    //     //最新版本已存放在读写区
+                    //     AssetBundlesManager.InitRuntimeInfo(checkInfo.ReadWriteInfo, true);
+                    //     break;
+                    //
+                    // case CheckStatus.InReadOnly:
+                    //     //最新版本已存放在只读区
+                    //     AssetBundlesManager.InitRuntimeInfo(checkInfo.ReadOnlyInfo, false);
+                    //     break;
                 }
 
-                if (checkInfo.NeedRemove)
+                /// 2023.09.15 远端更新的资源，如果读写区存在，先不删除，等更新完成后再删除
+                if (checkInfo.NeedRemove && checkInfo.State != CheckStatus.NeedUpdate)
                 {
                     //需要删除
                     Debug.Log("删除读写区资源：" + checkInfo.Name);

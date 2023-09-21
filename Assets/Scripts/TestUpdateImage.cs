@@ -10,10 +10,38 @@ public class TestUpdateImage : MonoBehaviour
 {
 
     public Image updateImage;
+    
+    private GameObject loadPrefab;
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+    
+    public void LoadPrefab()
+    {
+        // loadPrefab = AssetBundlesManager.LoadAsset<GameObject>("Assets/AssetBundleAssets/TestPrefab/TestImagePrefab.prefab");
+        // Instantiate(loadPrefab,transform,false);
+        
+        Debug.Log("1006bundle :" + AssetBundlesManager.IsBundleInLocality("assetbundleminigame_101_puzzlelevel_1006.bundle"));
+        Texture2D texture2D =
+            AssetBundlesManager.LoadAsset<Texture2D>(
+                "Assets/AssetBundleAssets/MiniGame/101/PuzzleLevel/1006/img_game_bg3.png");
+        if (texture2D != null)
+        {
+            Debug.Log("texture2D is exist");
+        }
+        else
+        {
+            Debug.Log("texture2D is null");
+        }
+       
+
+    }
+    
+    public void UnLoadPrefab()
+    {
+        AssetBundlesManager.UnloadAsset(loadPrefab);
     }
 
     public void UpdateImage()

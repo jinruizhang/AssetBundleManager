@@ -1,12 +1,12 @@
 {
     "name": "com.blowfire.unity.assetbundle",
-    "version": "0.0.31",
+    "version": "0.0.33",
     "displayName": "Blowfire AssetBundle",
     "description": "This is an asset bubble package",
     "unity": "2018.3",
     "unityRelease": "0f2",
     "dependencies": {
-        "com.blowfire.unity.network": "0.2.12"
+        "com.blowfire.unity.network": "0.3.2-preview"
     },
     "keywords": [
     ],

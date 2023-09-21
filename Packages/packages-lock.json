@@ -1,19 +1,19 @@
 {
   "dependencies": {
     "com.blowfire.unity.besthttp": {
-      "version": "2.4.1",
+      "version": "2.4.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "http://git.blowfires.com:8081/repository/blowfire-unity-group"
     },
     "com.blowfire.unity.network": {
-      "version": "0.2.9",
+      "version": "0.3.2-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.blowfire.unity.utility": "0.0.16",
-        "com.blowfire.unity.besthttp": "2.4.1"
+        "com.blowfire.unity.besthttp": "2.4.2"
       },
       "url": "http://git.blowfires.com:8081/repository/blowfire-unity-group"
     },

@@ -1,5 +1,0 @@
-{
-	"AppVersion":"1",
-	"ManifestVersion":2,
-	"Platform":"Android"
-}

@@ -13,27 +13,11 @@ MonoBehaviour:
   m_Name: PackageRuleConfig
   m_EditorClassIdentifier: 
   Rules:
-  - Directory: Assets/AssetBundleAssets/Json/MiniGame
+  - Directory: Assets/AssetBundleAssets/MiniGame/101/PuzzleLevel/1001
     Mode: 0
-    Group: MiniGame
-    InPackage: 0
-  - Directory: Assets/AssetBundleAssets/Json/TestJson
-    Mode: 0
-    Group: MiniGame
-    InPackage: 0
-  - Directory: Assets/AssetBundleAssets/MiniGame/101
-    Mode: 0
-    Group: MiniGame
+    Group: Base
     InPackage: 1
-  - Directory: Assets/AssetBundleAssets/MiniGame/PreRes
+  - Directory: Assets/AssetBundleAssets/MiniGame/101/PuzzleLevel/1006
     Mode: 0
-    Group: MiniGame
-    InPackage: 0
-  - Directory: Assets/AssetBundleAssets/MiniGame/Spine
-    Mode: 0
-    Group: MiniGame
-    InPackage: 0
-  - Directory: Assets/AssetBundleAssets/MiniGameScene
-    Mode: 1
-    Group: MiniGame
-    InPackage: 0
+    Group: Base
+    InPackage: 1

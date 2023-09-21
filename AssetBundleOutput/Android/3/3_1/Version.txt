@@ -1,0 +1,5 @@
+{
+	"AppVersion":"3",
+	"ManifestVersion":1,
+	"Platform":"Android"
+}
