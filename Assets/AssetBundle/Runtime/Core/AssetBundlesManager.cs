@@ -801,7 +801,7 @@ namespace ResourceTools
         /// <summary>
         /// 卸载场景
         /// </summary>
-        public static void UnloadScene(string sceneName)
+        public static void UnloadScene(string sceneName, bool unloadScene = true)
         {
 #if UNITY_EDITOR
             if (IsEditorMode)
@@ -817,14 +817,14 @@ namespace ResourceTools
                 return;
             }
 
-            InternalUnloadAsset(assetInfo);
+            InternalUnloadAsset(assetInfo, unloadScene);
         }
 
 
         /// <summary>
         /// 卸载Asset
         /// </summary>
-        private static void InternalUnloadAsset(AssetRuntimeInfo assetInfo)
+        private static void InternalUnloadAsset(AssetRuntimeInfo assetInfo, bool unloadScene = true)
         {
             if (assetInfo.RefCount == 0)
             {
@@ -842,7 +842,7 @@ namespace ResourceTools
             }
 
             BundleRuntimeInfo bundleInfo = bundleInfoDict[assetInfo.BundleName];
-            if (bundleInfo.ManifestInfo.IsScene)
+            if (bundleInfo.ManifestInfo.IsScene && unloadScene)
             {
                 //卸载场景
                 SceneManager.UnloadSceneAsync(assetInfo.ManifestInfo.AssetName);
